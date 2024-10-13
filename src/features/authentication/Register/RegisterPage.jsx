@@ -3,6 +3,7 @@ import Image from "../../../components/Image";
 import Form from "../../../components/Form";
 import Input from "../../../components/Input";
 import { useState } from "react";
+import BackButton from "../../../components/BackButton";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -11,14 +12,15 @@ const RegisterPage = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  console.log("show password: ", showPassword);
-
   return (
     <div className="flex flex-col items-center justify-between p-6 pb-11 h-[100dvh]">
-      <Image
-        src="../../../public/favicon/foodie-faceoff-no-bg.png"
-        alt="foodie-faceoff-logo"
-      />
+      <div className="">
+        <BackButton to="/" />
+        <Image
+          src="../../../public/favicon/foodie-faceoff-no-bg.png"
+          alt="foodie-faceoff-logo"
+        />
+      </div>
 
       <Form>
         <div className="flex flex-col items-center">
