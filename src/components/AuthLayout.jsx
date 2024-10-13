@@ -4,7 +4,7 @@ import Image from "./Image";
 const AuthLayout = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center justify-between p-6 pb-11 h-[100dvh]">
+    <div className="flex flex-col items-center justify-between p-6 pb-14 pt-[72px] h-[100dvh]">
       <Image
         src="../../../public/favicon/foodie-faceoff-no-bg.png"
         alt="foodie-faceoff-logo"
