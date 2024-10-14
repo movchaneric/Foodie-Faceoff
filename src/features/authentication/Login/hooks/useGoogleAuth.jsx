@@ -1,18 +1,17 @@
-import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/userContext";
 
 const useGoogleAuth = () => {
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+  const { user, setUser, profile, setProfile } = useUser();
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => {
       setUser(codeResponse);
-      navigate("/login");
     },
     onError: (error) => toast.error("Login failed:\n", error),
   });
@@ -31,13 +30,14 @@ const useGoogleAuth = () => {
         )
         .then((res) => {
           setProfile(res.data);
+          navigate("/main");
         })
         .catch((error) => {
           toast.error("Axios google get error: ", error);
         });
     }
   }, [user]);
-
+  //   console.log("Login: ", login, "\n User: ", user, "\n Profile: ", profile);
   return { login, user, profile };
 };
 

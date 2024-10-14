@@ -5,6 +5,8 @@ import LoginPage from "./features/authentication/Login/LoginPage";
 import RegisterPage from "./features/authentication/Register/RegisterPage";
 import AuthLayout from "./components/AuthLayout";
 import MainMenu from "./features/MainMenu/MainMenu";
+import { UserProvider } from "./features/authentication/Login/context/userContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_AUTH_KEY;
@@ -12,15 +14,27 @@ function App() {
   return (
     <>
       <GoogleOAuthProvider clientId={googleClientId}>
-        <BrowserRouter>
-          <Routes>
-            <Route index element={<AuthLayout />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/main" element={<MainMenu />} />
-          </Routes>
-        </BrowserRouter>
-        <ToastContainer />
+        <UserProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Public routes */}
+              <Route index element={<AuthLayout />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+
+              {/* Protected route */}
+              <Route
+                path="/main"
+                element={
+                  <ProtectedRoute>
+                    <MainMenu />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+          <ToastContainer />
+        </UserProvider>
       </GoogleOAuthProvider>
     </>
   );

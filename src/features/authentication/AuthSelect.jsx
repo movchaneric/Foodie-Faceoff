@@ -3,8 +3,8 @@ import useGoogleAuth from "./Login/hooks/useGoogleAuth";
 
 const AuthSelect = () => {
   const navigate = useNavigate();
-  const { login, profile } = useGoogleAuth();
-  console.log("Google profile: ", profile);
+  const { login } = useGoogleAuth();
+
   return (
     <div>
       <div>
@@ -21,8 +21,8 @@ const AuthSelect = () => {
         </button>
       </div>
 
-      <div class="p-4 relative text-center w-full before:content-[''] before:block before:border-t before:border-gray-300 before:absolute before:top-1/2 before:w-full before:h-px before:left-0 after:content-[''] after:block after:border-t after:border-gray-300 after:absolute after:top-1/2 after:w-full after:h-px after:right-0">
-        <span class="relative z-10 px-4 bg-[#f4f3ec] text-gray-500 text-sm">
+      <div className="p-4 relative text-center w-full before:content-[''] before:block before:border-t before:border-gray-300 before:absolute before:top-1/2 before:w-full before:h-px before:left-0 after:content-[''] after:block after:border-t after:border-gray-300 after:absolute after:top-1/2 after:w-full after:h-px after:right-0">
+        <span className="relative z-10 px-4 bg-[#f4f3ec] text-gray-500 text-sm">
           OR
         </span>
       </div>
