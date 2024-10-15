@@ -11,7 +11,7 @@ const MenuHeader = ({ profile, setProfile, setUser }) => {
 
   return (
     <>
-      <div className="flex items-center justify-between p-4 pt-6">
+      <div className="flex items-center justify-between p-4 pt-6 h-[15vh]">
         <div className="flex items-center ml-16">
           <p className="bg-yellow-400 p-3 font-sans rounded-md ]">
             Choose / Add your restaurant

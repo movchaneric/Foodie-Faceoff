@@ -7,7 +7,12 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
+/* Disable scroll on everypage */
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: #f4f3ec;
