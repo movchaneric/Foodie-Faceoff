@@ -1,7 +1,8 @@
 import { createContext, useContext, useState } from "react";
-
+// 1.Create Contex
 const UserContext = createContext();
 
+// 2.Create Provider
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -20,4 +21,5 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+// Export the Context wrapped with useContext
 export const useUser = () => useContext(UserContext);
