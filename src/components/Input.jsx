@@ -1,7 +1,14 @@
-const Input = ({ type, placeholder }) => {
+const Input = ({ type, name, value, placeholder, onChange }) => {
   return (
     <label className="input input-bordered flex items-center gap-2 bg-white btn-wide p-4 m-2">
-      <input type={type} className="grow" placeholder={placeholder} />
+      <input
+        type={type}
+        className="grow"
+        placeholder={placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
       {svgPicker[type]}
     </label>
   );
