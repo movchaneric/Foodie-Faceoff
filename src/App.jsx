@@ -8,35 +8,49 @@ import MainMenu from "./features/MainMenu/MainMenu";
 import { UserProvider } from "./features/authentication/Login/context/userContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_AUTH_KEY;
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        // staleTime: 60 * 1000,
+        staleTime: 0,
+      },
+    },
+  });
 
   return (
     <>
-      <GoogleOAuthProvider clientId={googleClientId}>
-        <UserProvider>
-          <BrowserRouter>
-            <Routes>
-              {/* Public routes */}
-              <Route index element={<AuthLayout />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <GoogleOAuthProvider clientId={googleClientId}>
+          <UserProvider>
+            <BrowserRouter>
+              <Routes>
+                {/* Public routes */}
+                <Route index element={<AuthLayout />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
 
-              {/* Protected route */}
-              <Route
-                path="/main"
-                element={
-                  <ProtectedRoute>
-                    <MainMenu />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </BrowserRouter>
-          <Toaster />
-        </UserProvider>
-      </GoogleOAuthProvider>
+                {/* Protected route */}
+                {/* <Route
+                  path="/main"
+                  element={
+                    <ProtectedRoute>
+                      <MainMenu />
+                    </ProtectedRoute>
+                  }
+                /> */}
+                <Route path="/main" element={<MainMenu />} />
+              </Routes>
+            </BrowserRouter>
+            <Toaster />
+          </UserProvider>
+        </GoogleOAuthProvider>
+      </QueryClientProvider>
     </>
   );
 }

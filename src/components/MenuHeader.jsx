@@ -1,7 +1,7 @@
 import { googleLogout } from "@react-oauth/google";
 
 const MenuHeader = ({ profile, setProfile, setUser }) => {
-  const { name, picture, id } = profile;
+  // const { name, picture, id } = profile;
 
   const logout = () => {
     googleLogout();
@@ -21,7 +21,7 @@ const MenuHeader = ({ profile, setProfile, setUser }) => {
           <div tabIndex={0} role="button">
             <img
               className="w-12 h-12 mr-2 rounded-full"
-              src={picture}
+              src={"dsfs"}
               alt="profile-img"
             />
           </div>

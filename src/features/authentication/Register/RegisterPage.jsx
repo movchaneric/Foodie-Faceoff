@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Image from "../../../components/Image";
 import Input from "../../../components/Input";
 import Form from "../../../components/Form";
 import BackButton from "../../../components/BackButton";
-import { postRegisterUser } from "./Services/RegisterService";
+
 import toast from "react-hot-toast";
+import { useRegister } from "./hooks/useRegister";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const { register, isLoading } = useRegister();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -24,18 +26,14 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
-
     const { repeatPassword, ...data } = formData;
 
-    data.type = "local";
+    const { type = "local", email, username, password } = data;
 
-    if (data.password !== repeatPassword)
+    if (password !== repeatPassword)
       return toast.error("Passwords doesn't match");
 
-    postRegisterUser(data, () => {
-      navigate("/login");
-    });
+    register({ type: "local", email, username, password });
   };
 
   return (

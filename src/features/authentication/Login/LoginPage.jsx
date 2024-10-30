@@ -1,33 +1,25 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Image from "../../../components/Image";
 import Form from "../../../components/Form";
 import Input from "../../../components/Input";
-import { useState } from "react";
 import BackButton from "../../../components/BackButton";
-import { postLogin } from "./service/loginService";
 import { useUser } from "./context/userContext";
+import { useLogin } from "./hooks/useLogin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login, isLoading } = useLogin();
 
-  const { setProfile } = useUser();
+  // const { setProfile } = useUser();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const loginData = { username, password };
-
-    postLogin(loginData, () => {
-      // Set logged in user
-      /* 
-         1. Create session token on the backend for 1 hour? 
-         2. setProfile(sessionToken)
-      */
-      setProfile({ username: "eric", password: "123" }); //DUmmy data
-      navigate("/main");
-    });
+    login({ username, password });
+    // setProfile({ username: "eric", password: "123" }); //DUmmy data
   };
 
   return (
