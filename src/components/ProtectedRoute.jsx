@@ -1,28 +1,42 @@
+import { useEffect, useState } from "react";
+import axios from "../axios";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../features/authentication/Login/context/userContext";
-import { useEffect } from "react";
+import { useAuth } from "../features/authentication/Authentication/useAuth";
 
-// const ProtectedRoute = ({ children }) => {
-//   const navigate = useNavigate();
+const ProtectedRoute = ({ children }) => {
+  const navigate = useNavigate();
 
-//   // 1.Load current logged-in user
-//   const { profile } = useUser();
-//   console.log("Profile PR: ", profile);
+  const [isLoading, setIsLoading] = useState(true); // Start with loading true
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-//   // 2. If no loggedin user then navigate to /login
-//   useEffect(() => {
-//     if (!profile) navigate("/");
-//   }, [profile, navigate]);
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get("/authCheck", {
+          withCredentials: true,
+        });
+        console.log("Protected Route = ", response);
+        setIsAuthenticated(response.data.isAuthenticated);
+      } catch (err) {
+        setIsAuthenticated(false);
+      } finally {
+        setIsLoading(false); // Set loading to false after check
+      }
+    };
+    checkAuth();
+  }, []);
 
-//   //4. If user is loaded then show children
-//   if (profile) return children;
-// };
+  useEffect(() => {
+    if (isAuthenticated === false) {
+      navigate("/login");
+    }
+  }, [isLoading, isAuthenticated, navigate]);
 
-// export default ProtectedRoute;
+  if (isAuthenticated) {
+    return children;
+  }
 
-/* TODO: 
-  Not only blocking information, 
-  for example when you want to transfer information about restaurants, 
-  then you must be logged in, but blocking all pages that are not login or register 
-  Remember that any request that is protected in the backend by protect must add { withCredentials: true } to the http request
-*/
+  return null; // Render nothing if not authenticated and waiting for navigation
+};
+
+export default ProtectedRoute;

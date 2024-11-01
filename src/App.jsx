@@ -5,8 +5,8 @@ import LoginPage from "./features/authentication/Login/LoginPage";
 import RegisterPage from "./features/authentication/Register/RegisterPage";
 import AuthLayout from "./components/AuthLayout";
 import MainMenu from "./features/MainMenu/MainMenu";
+import ProtectedRoute from "../src/components/ProtectedRoute";
 import { UserProvider } from "./features/authentication/Login/context/userContext";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -35,16 +35,11 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
 
-                {/* Protected route */}
-                {/* <Route
-                  path="/main"
-                  element={
-                    <ProtectedRoute>
-                      <MainMenu />
-                    </ProtectedRoute>
-                  }
-                /> */}
-                <Route path="/main" element={<MainMenu />} />
+                {/* Protected routes layout */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/main" element={<MainMenu />} />
+                  {/* Add more protected routes here */}
+                </Route>
               </Routes>
             </BrowserRouter>
             <Toaster />

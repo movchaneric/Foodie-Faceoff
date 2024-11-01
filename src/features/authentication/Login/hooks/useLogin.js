@@ -3,9 +3,11 @@ import axios from "../../../../axios";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { postLoginUser as loginAPI } from "../service/loginService";
+import { useUser } from "../context/userContext";
 
 export function useLogin() {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useUser();
 
   const mutation = useMutation({
     mutationFn: ({ username, password }) => {
@@ -13,8 +15,8 @@ export function useLogin() {
     },
     onSuccess: (user) => {
       // Maybe store user in reactQuery cache ? chcek this!
-      // Navigate to main page
-      //   navigate("/main");
+      setIsLoggedIn(true);
+      navigate("/main");
     },
   });
 
