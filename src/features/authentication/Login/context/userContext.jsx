@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <UserContext.Provider
@@ -17,6 +18,8 @@ export const UserProvider = ({ children }) => {
         setProfile,
         isLoggedIn,
         setIsLoggedIn,
+        setIsAuthenticated,
+        isAuthenticated,
       }}
     >
       {children}

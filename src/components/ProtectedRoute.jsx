@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../axios";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../features/authentication/Authentication/useAuth";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
@@ -15,10 +14,11 @@ const ProtectedRoute = ({ children }) => {
         const response = await axios.get("/authCheck", {
           withCredentials: true,
         });
-        console.log("Protected Route = ", response);
         setIsAuthenticated(response.data.isAuthenticated);
+        console.log(response);
       } catch (err) {
         setIsAuthenticated(false);
+        console.log(err);
       } finally {
         setIsLoading(false); // Set loading to false after check
       }
@@ -27,16 +27,14 @@ const ProtectedRoute = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated === false) {
+    if (!isLoading && !isAuthenticated) {
       navigate("/login");
     }
   }, [isLoading, isAuthenticated, navigate]);
 
-  if (isAuthenticated) {
-    return children;
-  }
+  if (isLoading) return <div>Loading...</div>;
 
-  return null; // Render nothing if not authenticated and waiting for navigation
+  return isAuthenticated ? <Outlet /> : null;
 };
 
 export default ProtectedRoute;

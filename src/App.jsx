@@ -35,10 +35,9 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
 
-                {/* Protected routes layout */}
+                {/* Protected routes! */}
                 <Route element={<ProtectedRoute />}>
                   <Route path="/main" element={<MainMenu />} />
-                  {/* Add more protected routes here */}
                 </Route>
               </Routes>
             </BrowserRouter>
