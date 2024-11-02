@@ -4,11 +4,11 @@ import ReadyGuests from "../ReadyGuests/ReadyGuests";
 import Options from "./Options";
 
 const MainMenu = () => {
-  const { profile, setProfile, setUser } = useUser();
+  // const { profile, setProfile, setUser } = useUser();
 
   return (
     <div>
-      <MenuHeader profile={profile} setProfile={setProfile} setUser={setUser} />
+      <MenuHeader />
 
       <Options />
 

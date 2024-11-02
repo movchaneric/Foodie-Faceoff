@@ -1,9 +1,9 @@
 import toast from "react-hot-toast";
 import axios from "../../../../axios";
 
-export const postLoginUser = async ({ username, password, config }) => {
+export const postLoginUser = async ({ username, password }) => {
   try {
-    await axios.post(
+    const response = await axios.post(
       "/login",
       {
         username,
@@ -11,7 +11,10 @@ export const postLoginUser = async ({ username, password, config }) => {
       },
       { withCredentials: true }
     );
+
+    return response.data;
   } catch (err) {
+    console.log(err.response.data);
     toast.error(err.response.data.message);
   }
 };

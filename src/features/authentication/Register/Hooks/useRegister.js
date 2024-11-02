@@ -1,6 +1,7 @@
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { postRegisterUser as registerAPI } from "../Services/RegisterService";
+import toast from "react-hot-toast";
 
 export function useRegister() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export function useRegister() {
     },
     onError: (error) => {
       // Get error message from the backend
-
+      toast.error(error.message);
       // Display error toast message to client
       console.log(error);
     },

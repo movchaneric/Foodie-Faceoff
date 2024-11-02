@@ -1,14 +1,14 @@
 import { googleLogout } from "@react-oauth/google";
+import { useLogout } from "../features/authentication/Logout/useLogout";
+import SpinnerMini from "./SpinnerMini";
 
-const MenuHeader = ({ profile, setProfile, setUser }) => {
-  // const { name, picture, id } = profile;
+const MenuHeader = () => {
+  const { logout, isLoggingOut } = useLogout();
 
-  const logout = () => {
-    googleLogout();
-    setUser(null);
-    setProfile(null);
+  const handleLogout = () => {
+    googleLogout(); // Clears Google session
+    logout(); // Clears app cookie and navigates to login
   };
-
   return (
     <>
       <div className="flex items-center justify-between p-4 pt-6 h-[15vh]">
@@ -33,7 +33,7 @@ const MenuHeader = ({ profile, setProfile, setUser }) => {
               <p className="text-lg">Profile</p>
             </li>
             <li>
-              <div className="text-lg" onClick={logout}>
+              <div className="text-lg" onClick={handleLogout}>
                 Logout
               </div>
             </li>

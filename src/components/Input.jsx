@@ -1,18 +1,4 @@
-const Input = ({ type, name, value, placeholder, onChange }) => {
-  return (
-    <label className="input input-bordered flex items-center gap-2 bg-white btn-wide p-4 m-2">
-      <input
-        type={type}
-        className="grow"
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
-      {svgPicker[type]}
-    </label>
-  );
-};
+import React from "react";
 
 const svgPicker = {
   username: (
@@ -50,6 +36,22 @@ const svgPicker = {
       <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
     </svg>
   ),
+};
+
+const Input = ({ type, name, value, placeholder, onChange }) => {
+  return (
+    <label className="input input-bordered flex items-center gap-2 bg-white btn-wide p-4 m-2">
+      <input
+        type={type}
+        className="grow"
+        placeholder={placeholder}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+      {svgPicker[type]}
+    </label>
+  );
 };
 
 export default Input;

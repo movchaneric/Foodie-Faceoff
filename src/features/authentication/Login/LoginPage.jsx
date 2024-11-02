@@ -4,13 +4,13 @@ import Image from "../../../components/Image";
 import Form from "../../../components/Form";
 import Input from "../../../components/Input";
 import BackButton from "../../../components/BackButton";
-import { useUser } from "./context/userContext";
+// import SpinnerMini from "../../../components/SpinnerMini";
 import { useLogin } from "./hooks/useLogin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("eric");
+  const [password, setPassword] = useState("12345678");
   const { login, isLoading } = useLogin();
 
   // const { setProfile } = useUser();
@@ -19,7 +19,6 @@ const LoginPage = () => {
     e.preventDefault();
 
     login({ username, password });
-    // setProfile({ username: "eric", password: "123" }); //DUmmy data
   };
 
   return (
@@ -48,7 +47,7 @@ const LoginPage = () => {
             />
           </div>
           <button className="btn btn-neutral btn-wide mt-3" type="submit">
-            Sign in
+            {isLoading ? "Loading..." : "Log in"}
           </button>
         </div>
       </Form>

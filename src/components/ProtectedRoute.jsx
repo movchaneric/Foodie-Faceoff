@@ -32,8 +32,6 @@ const ProtectedRoute = ({ children }) => {
     }
   }, [isLoading, isAuthenticated, navigate]);
 
-  if (isLoading) return <div>Loading...</div>;
-
   return isAuthenticated ? <Outlet /> : null;
 };
 
