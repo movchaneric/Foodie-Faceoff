@@ -13,7 +13,10 @@ export function useLogin() {
     onSuccess: (user) => {
       console.log("On success user: ", user);
       queryClient.setQueryData(["user"], user);
-      navigate("/main");
+      // Set timeout for jwt to load into the cookie
+      setTimeout(() => {
+        navigate("/main");
+      }, 1000);
     },
   });
 

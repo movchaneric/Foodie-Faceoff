@@ -18,7 +18,7 @@ export function useLogout() {
       try {
         const response = await axios.get("/logout", { withCredentials: true });
         if (response.data.status === "success") {
-          toast.success("Logout successful");
+          toast.success("Logged out successfuly");
           // Redirect to login page after logout
           navigate("/login");
         }

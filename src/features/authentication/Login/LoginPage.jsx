@@ -6,19 +6,28 @@ import Input from "../../../components/Input";
 import BackButton from "../../../components/BackButton";
 // import SpinnerMini from "../../../components/SpinnerMini";
 import { useLogin } from "./hooks/useLogin";
+import SpinnerMini from "../../../components/SpinnerMini";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("eric");
-  const [password, setPassword] = useState("12345678");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
 
-  // const { setProfile } = useUser();
+  console.log("Is loading: ", isLoading);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    login({ username, password });
+    login(
+      { username, password },
+      {
+        onSettled: () => {
+          setUsername("");
+          setPassword("");
+        },
+      }
+    );
   };
 
   return (
@@ -47,7 +56,7 @@ const LoginPage = () => {
             />
           </div>
           <button className="btn btn-neutral btn-wide mt-3" type="submit">
-            {isLoading ? "Loading..." : "Log in"}
+            {isLoading ? <SpinnerMini /> : "Log in"}
           </button>
         </div>
       </Form>
