@@ -10,6 +10,7 @@ import { UserProvider } from "./features/authentication/Login/context/userContex
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import ProfilePage from "./features/Profile/ProfilePage";
 
 function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_AUTH_KEY;
@@ -35,9 +36,10 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
 
-                {/* Protected routes! */}
+                {/* Protected routes */}
                 <Route element={<ProtectedRoute />}>
                   <Route path="/main" element={<MainMenu />} />
+                  <Route path="/auth/profile" element={<ProfilePage />} />
                 </Route>
               </Routes>
             </BrowserRouter>

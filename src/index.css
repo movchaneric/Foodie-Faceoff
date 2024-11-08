@@ -7,16 +7,21 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-/* Disable scroll on everypage */
+
+/* Disable scroll on every page */
 html,
 body {
   overflow: hidden;
   height: 100%;
 }
+
+/* Set the default font family */
 body {
   color: rgb(var(--foreground-rgb));
   background: #f4f3ec;
   font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text",
+    "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @layer utilities {

@@ -1,9 +1,11 @@
 import { googleLogout } from "@react-oauth/google";
 import { useLogout } from "../features/authentication/Logout/useLogout";
 import SpinnerMini from "./SpinnerMini";
+import { useNavigate } from "react-router-dom";
 
 const MenuHeader = () => {
   const { logout, isLoggingOut } = useLogout();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     googleLogout(); // Clears Google session
@@ -29,7 +31,7 @@ const MenuHeader = () => {
             tabIndex={0}
             className="dropdown-content menu bg-[#f4f3ec] rounded-box z-[1] w-52 p-2 shadow"
           >
-            <li>
+            <li onClick={() => navigate("/auth/profile")}>
               <p className="text-lg">Profile</p>
             </li>
             <li>
