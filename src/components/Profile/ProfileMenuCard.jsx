@@ -1,6 +1,18 @@
-const ProfileMenuCard = ({ icon, label, description, nextIcon }) => {
+import { useNavigate } from "react-router-dom";
+
+const ProfileMenuCard = ({
+  icon,
+  label,
+  description,
+  nextIcon,
+  navigateTo,
+}) => {
+  const navigate = useNavigate();
   return (
-    <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:bg-gray-100 cursor-pointer">
+    <div
+      onClick={() => navigate(navigateTo)}
+      className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:bg-gray-100 cursor-pointer"
+    >
       {/* Left Section with Icon, Label, and Description */}
       <div className="flex items-center">
         <div className="text-2xl text-blue-500 mr-4">{icon}</div>

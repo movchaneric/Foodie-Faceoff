@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import ProfilePage from "./features/Profile/ProfilePage";
+import ProfileUpdate from "./components/ProfileUpdate/ProfileUpdate";
 
 function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_AUTH_KEY;
@@ -40,6 +41,10 @@ function App() {
                 <Route element={<ProtectedRoute />}>
                   <Route path="/main" element={<MainMenu />} />
                   <Route path="/auth/profile" element={<ProfilePage />} />
+                  <Route
+                    path="/auth/profile/update"
+                    element={<ProfileUpdate />}
+                  />
                 </Route>
               </Routes>
             </BrowserRouter>

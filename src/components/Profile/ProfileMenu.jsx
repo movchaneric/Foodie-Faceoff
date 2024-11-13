@@ -4,13 +4,16 @@ import {
   HiOutlineUserCircle,
 } from "react-icons/hi2";
 import ProfileMenuCard from "./ProfileMenuCard";
+import { useNavigate } from "react-router-dom";
 
 const ProfileMenu = () => {
+  const navigate = useNavigate();
   const menuItems = [
     {
       label: "Profile Details",
       description: "View/Update your account information",
       icon: <HiOutlineUserCircle />,
+      navigateTo: "/auth/profile/update",
     },
     {
       label: "Delete My Account",
@@ -28,6 +31,7 @@ const ProfileMenu = () => {
             label={item.label}
             description={item.description}
             nextIcon={item.nextIcon ? item.nextIcon : null}
+            navigateTo={item.navigateTo ? item.navigateTo : null}
           />
         </div>
       ))}

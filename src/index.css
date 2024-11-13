@@ -18,7 +18,7 @@ body {
 /* Set the default font family */
 body {
   color: rgb(var(--foreground-rgb));
-  background: #f4f3ec;
+  background: #ededed;
   font-size: 18px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "SF Pro Text",
     "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;

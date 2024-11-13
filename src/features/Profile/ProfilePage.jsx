@@ -11,7 +11,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <ProfileHeader headerTitle="Profile" />
+      <ProfileHeader headerTitle="Profile" navigateTo="/main" />
       <ProfileCard
         name={user.name}
         profilePic={user.profilePic}
