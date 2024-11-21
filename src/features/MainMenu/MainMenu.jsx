@@ -1,27 +1,39 @@
+import { ClientSideSuspense, RoomProvider, useOthers } from "@liveblocks/react";
+import Room from "../../components/Liveblocks/Room";
 import MenuHeader from "../../components/MenuHeader";
-import { useUser } from "../authentication/Login/context/userContext";
-import ReadyGuests from "../ReadyGuests/ReadyGuests";
-import Options from "./Options";
+import { getRandomColor } from "../../utils/helpers";
+import { LiveMap } from "@liveblocks/client";
+import GameApp from "../../components/GameApp";
+
+const dummyUserTest = {
+  displayName: "Eric",
+  color: getRandomColor(),
+};
 
 const MainMenu = () => {
   // const { profile, setProfile, setUser } = useUser();
+  // const others = useOthers();
+  // console.log("Others: ", others);
 
   return (
-    <div>
+    <>
       <MenuHeader />
 
-      <Options />
-
-      <ReadyGuests />
-      <div className="flex items-start justify-center h-[15vh]">
-        <div className="flex justify-center p-4">
-          <button className="btn btn-neutral"> Add location</button>
-        </div>
-        <div className="flex justify-center p-4">
-          <button className="btn btn-accent"> Ready!</button>
-        </div>
-      </div>
-    </div>
+      <Room>
+        <RoomProvider
+          id="my-room"
+          initialPresence={{
+            displayName: dummyUserTest.displayName,
+            color: dummyUserTest.color,
+          }}
+          initialStorage={{ scores: new LiveMap([]) }}
+        >
+          <ClientSideSuspense fallback={<div>Loading…</div>}>
+            <GameApp />
+          </ClientSideSuspense>
+        </RoomProvider>
+      </Room>
+    </>
   );
 };
 
