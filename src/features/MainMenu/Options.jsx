@@ -5,10 +5,6 @@ import { useRestuarants } from "./hooks/useRestuarants";
 const Options = () => {
   const { restuarants, isLoading } = useRestuarants();
 
-  useEffect(() => {
-    console.log(restuarants);
-  }, []);
-
   if (isLoading) return <div>Loading restuarants...</div>;
 
   return (

@@ -1,20 +1,23 @@
-import { ClientSideSuspense, RoomProvider, useOthers } from "@liveblocks/react";
+import {
+  ClientSideSuspense,
+  RoomProvider,
+  useBroadcastEvent,
+  useOther,
+  useOthers,
+} from "@liveblocks/react";
 import Room from "../../components/Liveblocks/Room";
 import MenuHeader from "../../components/MenuHeader";
-import { getRandomColor } from "../../utils/helpers";
+import { capitalizeFirstLetter, getRandomColor } from "../../utils/helpers";
 import { LiveMap } from "@liveblocks/client";
 import GameApp from "../../components/GameApp";
 import { useUser } from "../authentication/User/useUser";
-
-const dummyUserTest = {
-  displayName: "Eric",
-  color: getRandomColor(),
-};
+import { useEffect, useState } from "react";
 
 const MainMenu = () => {
-  // const { profile, setProfile, setUser } = useUser();
-  // const others = useOthers();
-  // console.log("Others: ", others);
+  const { user, isLoading } = useUser();
+
+  //TODO: Change it to proper loading to cover the whole screen , maybe animation ???
+  if (isLoading) return <div>Loading user</div>;
 
   return (
     <>
@@ -24,13 +27,13 @@ const MainMenu = () => {
         <RoomProvider
           id="my-room"
           initialPresence={{
-            displayName: dummyUserTest.displayName,
-            color: dummyUserTest.color,
+            displayName: user.username,
+            color: getRandomColor(),
           }}
           initialStorage={{ scores: new LiveMap([]) }}
         >
           <ClientSideSuspense fallback={<div>Loading…</div>}>
-            <GameApp />
+            <GameApp user={user} />
           </ClientSideSuspense>
         </RoomProvider>
       </Room>

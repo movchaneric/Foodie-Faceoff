@@ -35,7 +35,10 @@ declare global {
     };
 
     // Custom events, for useBroadcastEvent, useEventListener
-    RoomEvent: {};
+    RoomEvent:
+      | { type: "TOAST/READY"; message: string }
+      | { type: "TOAST/LOGIN"; message: string };
+
     // Example has two events, using a union
     // | { type: "PLAY" }
     // | { type: "REACTION"; emoji: "🔥" };
