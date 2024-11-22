@@ -21,7 +21,8 @@ declare global {
     Storage: {
       // Example, a conflict-free list
       // animals: LiveList<string>;
-      scores: LiveMap<string, number>;
+
+      scores: LiveMap<string, number>; // < String: Username, Number: current-score >
     };
 
     // Custom user info set when authenticating with a secret key
