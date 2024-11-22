@@ -4,6 +4,7 @@ import MenuHeader from "../../components/MenuHeader";
 import { getRandomColor } from "../../utils/helpers";
 import { LiveMap } from "@liveblocks/client";
 import GameApp from "../../components/GameApp";
+import { useUser } from "../authentication/User/useUser";
 
 const dummyUserTest = {
   displayName: "Eric",

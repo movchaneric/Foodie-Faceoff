@@ -10,10 +10,8 @@ export function useLogin() {
     mutationFn: ({ username, password }) => {
       loginAPI({ username, password });
     },
-    onSuccess: (user) => {
-      console.log("On success user: ", user);
-      queryClient.setQueryData(["user"], user);
-      // Set timeout for jwt to load into the cookie
+    onSuccess: () => {
+      // Set timeout for jwt to load into the cookie otherwise it will fail.
       setTimeout(() => {
         navigate("/main");
       }, 1000);

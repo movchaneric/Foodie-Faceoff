@@ -2,28 +2,21 @@ import { useEffect } from "react";
 import ProfileCard from "../../components/Profile/ProfileCard";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 import ProfileMenu from "../../components/Profile/ProfileMenu";
-import { useCurrentUser } from "./hooks/useCurrentUser";
+import { useUser } from "../authentication/User/useUser";
 
 const ProfilePage = () => {
-  const user = {
-    name: "Hari Bahadur",
-    lastLogin: "April 12, 2023",
-    profilePic: "https://picsum.photos/200", // Replace with actual image URL
-  };
-
-  // const { currentUser, isLoading } = useCurrentUser();
-  // console.log("Current user: ", currentUser.user);
+  const { user } = useUser();
 
   return (
     <div>
       <ProfileHeader headerTitle="Profile" navigateTo="/main" />
       <ProfileCard
-        name={user.email}
-        profilePic={user.profilePic}
-        lastLogin={user.lastLogin}
+        name={user.username}
+        profilePic="https://picsum.photos/200"
+        lastLogin="April 12, 2023"
       />
 
-      <ProfileMenu />
+      <ProfileMenu user={user} />
     </div>
   );
 };

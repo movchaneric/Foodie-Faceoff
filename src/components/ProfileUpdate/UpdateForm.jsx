@@ -1,23 +1,25 @@
+import { useUser } from "../../features/authentication/User/useUser";
 import FormInput from "../Form/FormInput";
 import FormLabel from "../FormLabel";
 import FormRow from "../FormRow";
 
 const UpdateForm = () => {
+  const { user } = useUser();
   return (
     <div className="grid grid-cols-1 p-10 ">
       <FormRow>
         <FormLabel label="Name" />
-        <FormInput type="text" placeholder="Eric movchan" />
+        <FormInput type="text" placeholder={user.username} />
       </FormRow>
 
       <FormRow>
         <FormLabel label="Email" />
-        <FormInput type="email" placeholder="test@gmail.com" />
+        <FormInput type="email" placeholder={user.email} />
       </FormRow>
 
       <FormRow>
         <FormLabel label="Username" />
-        <FormInput type="text" placeholder="username" />
+        <FormInput type="text" placeholder={user.username} />
       </FormRow>
 
       <FormRow>

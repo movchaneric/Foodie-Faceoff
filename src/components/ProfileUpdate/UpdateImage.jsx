@@ -1,6 +1,9 @@
 import { HiOutlineCamera } from "react-icons/hi2";
+import { useUser } from "../../features/authentication/User/useUser";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 const UpdateImage = () => {
+  const { user } = useUser();
   return (
     <div className=" flex items-center justify-center mt-8">
       <div className="flex flex-col items-center justify-center p-6">
@@ -28,7 +31,9 @@ const UpdateImage = () => {
 
         {/* Profile Info */}
         <div className="flex flex-col items-center justify-center mt-4">
-          <h2 className="text-black text-lg font-semibold">Eric Movchan</h2>
+          <h2 className="text-black text-lg font-semibold">
+            {capitalizeFirstLetter(user.username)}
+          </h2>
         </div>
       </div>
     </div>

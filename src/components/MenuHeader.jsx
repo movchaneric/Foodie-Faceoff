@@ -2,9 +2,11 @@ import { googleLogout } from "@react-oauth/google";
 import { useLogout } from "../features/authentication/Logout/useLogout";
 import SpinnerMini from "./SpinnerMini";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../features/authentication/User/useUser";
 
 const MenuHeader = () => {
   const { logout, isLoggingOut } = useLogout();
+  const { user } = useUser();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -23,7 +25,7 @@ const MenuHeader = () => {
           <div tabIndex={0} role="button">
             <img
               className="w-12 h-12 mr-2 rounded-full"
-              src={"dsfs"}
+              src="https://picsum.photos/200"
               alt="profile-img"
             />
           </div>

@@ -14,8 +14,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
 
-  console.log("Is loading: ", isLoading);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

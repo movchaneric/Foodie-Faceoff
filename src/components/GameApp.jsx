@@ -7,6 +7,7 @@ import Ready from "./MainMenu/Ready";
 const GameApp = () => {
   const others = useOthers();
   console.log("others:", others);
+
   return (
     <>
       <p>There are {others.length} users connceted.</p>

@@ -10,3 +10,10 @@ export const getRandomColor = () => {
 
   return colors[Math.floor(Math.random() * colors.length)];
 };
+
+export function capitalizeFirstLetter(str) {
+  if (!str || typeof str !== "string") {
+    return ""; // Handle invalid input
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
