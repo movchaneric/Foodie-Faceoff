@@ -17,3 +17,9 @@ export function capitalizeFirstLetter(str) {
   }
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
+
+// Remove spaces after string
+export function removeSpaceAfterString(str) {
+  //Regular expression identifying space: /\s+$/
+  return str.replace(/\s+$/, "");
+}

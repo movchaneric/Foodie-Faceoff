@@ -1,7 +1,13 @@
-const Location = () => {
+const Location = ({ setModalIsOpen }) => {
   return (
     <div className="flex justify-center p-4">
-      <button className="btn btn-neutral"> Add location</button>
+      <button
+        className="btn btn-neutral"
+        onClick={() => setModalIsOpen((prev) => !prev)}
+      >
+        {" "}
+        Add location
+      </button>
     </div>
   );
 };

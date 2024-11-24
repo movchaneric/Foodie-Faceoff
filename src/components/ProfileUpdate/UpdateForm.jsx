@@ -1,4 +1,5 @@
 import { useUser } from "../../features/authentication/User/useUser";
+import { removeSpaceAfterString } from "../../utils/helpers";
 import FormInput from "../Form/FormInput";
 import FormLabel from "../FormLabel";
 import FormRow from "../FormRow";
@@ -9,17 +10,26 @@ const UpdateForm = () => {
     <div className="grid grid-cols-1 p-10 ">
       <FormRow>
         <FormLabel label="Name" />
-        <FormInput type="text" placeholder={user.username} />
+        <FormInput
+          type="text"
+          placeholder={removeSpaceAfterString(user.username)}
+        />
       </FormRow>
 
       <FormRow>
         <FormLabel label="Email" />
-        <FormInput type="email" placeholder={user.email} />
+        <FormInput
+          type="email"
+          placeholder={removeSpaceAfterString(user.email)}
+        />
       </FormRow>
 
       <FormRow>
         <FormLabel label="Username" />
-        <FormInput type="text" placeholder={user.username} />
+        <FormInput
+          type="text"
+          placeholder={removeSpaceAfterString(user.username)}
+        />
       </FormRow>
 
       <FormRow>

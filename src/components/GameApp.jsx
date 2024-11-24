@@ -11,19 +11,22 @@ import Ready from "./MainMenu/Ready";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { capitalizeFirstLetter } from "../utils/helpers";
+import AddModal from "./AddModal";
+import Connected from "./Connected";
 
 const GameApp = ({ user }) => {
   const [myPresence, updateMyPresence] = useMyPresence();
   const broadcast = useBroadcastEvent();
   const others = useOthers();
-  const [isReady, setIsReady] = useState(false);
-  console.log("Others: ", others);
-  console.log("myPresence: ", myPresence);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  console.log("modalIsOpen : ", modalIsOpen);
+
+  // console.log("Others: ", others);
+  // console.log("myPresence: ", myPresence);
 
   const isEveryoneReady =
     others.every((other) => other.presence.isReady) && myPresence.isReady;
-
-  console.log("is-everyone-ready: ", isEveryoneReady);
+  // console.log("isEveryoneReady: ", isEveryoneReady);
 
   useEffect(() => {
     if (user) {
@@ -43,13 +46,13 @@ const GameApp = ({ user }) => {
 
   return (
     <>
-      <p>There are {others.length} users connceted.</p>
+      <Connected others={others} />
       <Options />
 
       <ReadyGuests others={others} />
 
       <div className="flex items-start justify-center h-[15vh]">
-        <Location />
+        <Location setModalIsOpen={setModalIsOpen} />
         {!myPresence.isReady && (
           <Ready
             broadcast={broadcast}
@@ -58,6 +61,11 @@ const GameApp = ({ user }) => {
           />
         )}
       </div>
+      {modalIsOpen && (
+        <AddModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}>
+          fuck
+        </AddModal>
+      )}
     </>
   );
 };

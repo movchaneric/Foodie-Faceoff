@@ -7,6 +7,7 @@ import BackButton from "../../../components/BackButton";
 // import SpinnerMini from "../../../components/SpinnerMini";
 import { useLogin } from "./hooks/useLogin";
 import SpinnerMini from "../../../components/SpinnerMini";
+import { removeSpaceAfterString } from "../../../utils/helpers";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -43,14 +44,18 @@ const LoginPage = () => {
           <Input
             type="username"
             placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) =>
+              setUsername(removeSpaceAfterString(e.target.value))
+            }
           />
 
           <div className="flex items-center ">
             <Input
               type="password"
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setPassword(removeSpaceAfterString(e.target.value))
+              }
             />
           </div>
           <button className="btn btn-neutral btn-wide mt-3" type="submit">
